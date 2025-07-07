@@ -18,7 +18,9 @@ and run the plan command to see the action plan and what terraform will build
 then you run the apply
 `terraform apply`
 
+<img width="1264" alt="Screenshot 2025-07-07 at 14 27 21" src="https://github.com/user-attachments/assets/2db20568-bece-4096-89f5-7a730da129b9" />
 
+13 resources will be created and configured!
 Here is the flie tree for the entire set up;
 
 aws-monitoring-logging-pipeline/
