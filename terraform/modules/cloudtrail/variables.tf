@@ -33,12 +33,12 @@ variable "stream_name" {
 
 variable "role_arn" {
   type = string
-  default = "arn:aws:iam::615299732970:role/firehose_delivery_role"
+#  default = "arn:aws:iam::615299732970:role/firehose_delivery_role"
 }
 
 variable "bucket_arn" {
   type = string
-  default = "arn:aws:s3:::aws-monit-logging-pipeline"
+#  default = "arn:aws:s3:::aws-monit-logging-pipeline"
 }
 
 variable "buffering_size" {

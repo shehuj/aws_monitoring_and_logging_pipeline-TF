@@ -32,7 +32,7 @@ variable "firehose_role_arn" {
 variable "firehose_bucket_arn" {
     description = "The ARN of the S3 bucket for Kinesis Firehose"
     type        = string
-    default     = "arn:aws:s3:::cicd-kinesis-firehose-bucket"
+#    default     = "arn:aws:s3:::cicd-kinesis-firehose-bucket"
 }
 
 variable "buffering_size" {
@@ -56,7 +56,7 @@ variable "compression_format" {
 variable "s3_bucket_name" {
     description = "The name of the S3 bucket where Kinesis Firehose will deliver data"
     type        = string
-    default     = "cicd-kinesis-firehose-bucket"
+    default     = "ec2-shutdown-lambda-bucket"
 }
 
 variable "s3_prefix" {
@@ -68,6 +68,6 @@ variable "s3_prefix" {
 variable "s3_bucket_arn" {
     description = "The ARN of the S3 bucket where Kinesis Firehose will deliver data"
     type        = string
-    default     = "arn:aws:s3::615299732970:cicd-kinesis-firehose-bucket"
+#    default     = "arn:aws:s3::615299732970:cicd-kinesis-firehose-bucket"
 }
 
