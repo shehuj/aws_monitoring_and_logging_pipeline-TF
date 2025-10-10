@@ -17,6 +17,10 @@ env:
   AWS_REGION: us-east-1
   TERRAFORM_VERSION: 1.6.2
   TF_WORKING_DIR: terraform
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  CW_LOG_GROUP: ${{ secrets.CW_LOG_GROUP }}
+
 
 jobs:
   terraform:
@@ -36,12 +40,6 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-
-      - name: Configure AWS Credentials (OIDC)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
-          aws-region: ${{ env.AWS_REGION }}
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
@@ -86,12 +84,12 @@ jobs:
           echo "Gathering Terraform outputs..."
           terraform output
           terraform output -json > ../tf_outputs.json
-        continue-on-error: true
+        continue-on-error: false
 
       - name: Publish Outputs to CloudWatch
         if: always()
         env:
-          LOG_GROUP: ${{ secrets.CW_LOG_GROUP }}
+          LOG_GROUP: ${{ env.CW_LOG_GROUP }}
           AWS_REGION: ${{ env.AWS_REGION }}
         run: |
           TS=$(date -u +"%Y-%m-%dT%H-%M-%SZ")
@@ -111,7 +109,7 @@ jobs:
         if: github.event_name == 'pull_request'
         uses: actions/github-script@v7
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ env.GITHUB_TOKEN }}
           script: |
             const summary = `
             ### Terraform Summary
