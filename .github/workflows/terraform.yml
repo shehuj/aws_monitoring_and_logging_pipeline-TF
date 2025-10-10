@@ -4,10 +4,13 @@ on:
   push:
     branches:
       - dev
+      - main
   
   pull_request:
     branches:
       - main
+      - dev
+  
 
 env:
   AWS_REGION: ${{ secrets.AWS_REGION }}
