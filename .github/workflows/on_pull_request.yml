@@ -60,7 +60,7 @@ jobs:
 
       - name: Terraform Plan (dev)
         id: plan
-        run: terraform plan -input=false -var="environment=dev" -out=tfplan
+        run: terraform plan -input=false -out=tfplan
 
       - name: Terraform Apply (dev)
         id: apply

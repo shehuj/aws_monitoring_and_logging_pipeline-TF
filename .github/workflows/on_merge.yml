@@ -48,7 +48,7 @@ jobs:
 
       - name: Terraform Plan (prod)
         id: plan-prod
-        run: terraform plan -input=false -var="environment=prod" -out=tfplan-prod
+        run: terraform plan -input=false -out=tfplan-prod
 
       - name: Upload Prod Plan
         uses: actions/upload-artifact@v4
