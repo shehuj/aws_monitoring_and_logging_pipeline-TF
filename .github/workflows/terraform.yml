@@ -3,9 +3,7 @@ name: Terraform Deploy with CloudWatch Logging
 on:
   push:
     branches:
-      - dev
-      - main
-  
+      - dev  
   pull_request:
     branches:
       - main
@@ -25,6 +23,7 @@ jobs:
   terraform:
     name: Terraform Deploy
     runs-on: ubuntu-latest
+    working-directory: terraform
     
     steps:
       - name: Checkout code
