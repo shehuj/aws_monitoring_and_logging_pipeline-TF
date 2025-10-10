@@ -105,34 +105,34 @@ jobs:
             --log-events "$LOG_JSON" \
             --region "$AWS_REGION" || echo "Failed to push CloudWatch logs"
 
-            - name: Add PR comment
-            uses: actions/github-script@v7
-            with:
-              github-token: ${{ secrets.GITHUB_TOKEN }}
-              script: |
-                const bucketName = process.env.S3_BUCKET_BETA;
-                const s3Key = process.env.S3_KEY;
-                const region = process.env.AWS_REGION;
+      - name: Add PR comment
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const bucketName = process.env.S3_BUCKET_BETA;
+            const s3Key = process.env.S3_KEY;
+            const region = process.env.AWS_REGION;
           
-                const comment = `## 🎵 Beta Audio Generated
+            const comment = `## 🎵 Beta Audio Generated
           
-                Your text-to-speech audio has been successfully generated and uploaded to S3.
+            Your text-to-speech audio has been successfully generated and uploaded to S3.
           
-                **S3 Location:** \`s3://${bucketName}/${s3Key}\`
-                **AWS Region:** \`${region}\`
+            **S3 Location:** \`s3://${bucketName}/${s3Key}\`
+            **AWS Region:** \`${region}\`
           
-                To download the audio file:
-                \`\`\`bash
-                aws s3 cp s3://${bucketName}/${s3Key} ./beta.mp3
-                \`\`\`
+            To download the audio file:
+            \`\`\`bash
+            aws s3 cp s3://${bucketName}/${s3Key} ./beta.mp3
+            \`\`\`
           
-                Or view in AWS Console:
-                https://s3.console.aws.amazon.com/s3/object/${bucketName}?prefix=${s3Key}
-                `;
+            Or view in AWS Console:
+            https://s3.console.aws.amazon.com/s3/object/${bucketName}?prefix=${s3Key}
+            `;
           
-                github.rest.issues.createComment({
-                  issue_number: context.issue.number,
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  body: comment
-                });
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
