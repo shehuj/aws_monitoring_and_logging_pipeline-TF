@@ -1,0 +1,74 @@
+name: "PR Deploy → Dev"
+
+on:
+  pull_request:
+    branches:
+      - dev
+      - main
+    paths:
+      - "terraform/**"
+      - ".github/workflows/on_pull_request.yml"
+
+permissions:
+  contents: read
+  pull-requests: write
+
+env:
+  TERRAFORM_VERSION: 1.6.0
+  AWS_REGION: ${{ secrets.AWS_REGION }}
+
+jobs:
+  terraform-deploy-dev:
+    name: "Terraform Deploy to Dev"
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: terraform
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TERRAFORM_VERSION }}
+          terraform_wrapper: false
+
+      - name: Terraform fmt & validate
+        run: |
+          terraform fmt -check -recursive
+          terraform validate
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Terraform Init
+        run: terraform init -input=false
+
+      - name: Terraform Plan (dev)
+        id: plan
+        run: terraform plan -input=false -var="environment=dev" -out=tfplan
+
+      - name: Terraform Apply (dev)
+        id: apply
+        run: terraform apply -input=false -auto-approve tfplan
+
+      - name: Comment on PR
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const comment = `✅ Deployed changes to **dev** environment.\n\nTerraform plan used:\n\`\`\`\n${{ steps.plan.outputs.stdout || '' }}\n\`\`\``;
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
