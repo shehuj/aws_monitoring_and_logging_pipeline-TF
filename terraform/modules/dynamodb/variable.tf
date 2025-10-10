@@ -19,13 +19,13 @@ variable "stream_name" {
 variable "role_arn" {
     description = "The ARN of the IAM role for Kinesis Firehose"
     type        = string
-    default     = "arn:aws:iam::615299732970:role/firehose_delivery_role"
+#    default     = "arn:aws:iam::615299732970:role/firehose_delivery_role"
 }
 
 variable "bucket_arn" {
     description = "The ARN of the S3 bucket for Kinesis Firehose"
     type        = string
-    default     = "arn:aws:s3:::cicd-kinesis-firehose-bucket"
+#    default     = "arn:aws:s3:::cicd-kinesis-firehose-bucket"
 }
 
 variable "buffering_size" {
