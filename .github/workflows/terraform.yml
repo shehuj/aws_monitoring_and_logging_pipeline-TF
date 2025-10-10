@@ -114,13 +114,13 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const summary = `
-            ### 🧱 Terraform Summary
+            ### Terraform Summary
             - **Format:** \`${{ steps.fmt.outcome }}\`
             - **Init:** \`${{ steps.init.outcome }}\`
             - **Validate:** \`${{ steps.validate.outcome }}\`
             - **Plan:** \`${{ steps.plan.outcome }}\`
 
-            🪣 **Artifacts:** Terraform plan uploaded to workflow artifacts.
+              **Artifacts:** Terraform plan uploaded to workflow artifacts.
 
             _Workflow:_ \`${{ github.workflow }}\`  
             _Branch:_ \`${{ github.ref_name }}\`  
