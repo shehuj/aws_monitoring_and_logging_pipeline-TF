@@ -3,7 +3,9 @@ name: Terraform Deploy with CloudWatch Logging
 on:
   push:
     branches:
-      - dev  
+      - dev 
+      - main
+ 
   pull_request:
     branches:
       - main
