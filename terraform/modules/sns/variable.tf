@@ -7,5 +7,5 @@
  variable "subscription_endpoint" {
     description = "Endpoint for the SNS subscription"
     type        = string
-    default     = ""
+    default     = "shehuj35@gmail.com"
  }
