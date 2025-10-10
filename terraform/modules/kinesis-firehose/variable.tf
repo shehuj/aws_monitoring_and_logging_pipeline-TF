@@ -57,9 +57,3 @@ variable "s3_bucket_arn" {
     type        = string
     default     = "arn:aws:s3:::ec2-shutdown-lambda-bucket"
 }
-
-variable "stream_name" {
-    description = "value"
-    type        = string
-    default     = "aws-monit-logging-pipeline"
-}
