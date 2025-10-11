@@ -59,14 +59,14 @@ jobs:
 
       - name: Terraform Plan (dev)
         id: plan
-        run: terraform plan -input=false -out=tfplan
+        run: terraform plan -input=false
 
       - name: Terraform Show (dev)
         id: show
         run: terraform show -json
       - name: Terraform Apply (dev)
         id: apply
-        run: terraform apply -input=false -auto-approve tfplan
+        run: terraform apply -input=false -auto-approve
 
       - name: Comment on PR
         uses: actions/github-script@v7
