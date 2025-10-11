@@ -68,6 +68,6 @@ variable "s3_prefix" {
 variable "s3_bucket_arn" {
     description = "The ARN of the S3 bucket where Kinesis Firehose will deliver data"
     type        = string
-#    default     = "arn:aws:s3::615299732970:cicd-kinesis-firehose-bucket"
+    default     = "arn:aws:s3::615299732970:ec2-shutdown-lambda-bucket"
 }
 
