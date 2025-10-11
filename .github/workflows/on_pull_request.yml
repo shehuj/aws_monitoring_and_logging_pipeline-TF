@@ -65,14 +65,6 @@ jobs:
       - name: Terraform Show (dev)
         id: show
         run: terraform show -json
-
-      
-      - name: Terraform Destroy
-        id: destroy
-        run: |
-          terraform destroy -auto-approve \
-            -var="environment=${{ github.event.inputs.environment }}"
-
       - name: Terraform Apply (dev)
         id: apply
         run: terraform apply -input=false -auto-approve tfplan
