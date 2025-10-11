@@ -58,11 +58,11 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: prod-plan
-          path: terraform/tfplan-prod
+          path: terraform
           retention-days: 0
       - name: Terraform Apply (prod)
         id: apply-prod
-        run: terraform apply -input=false -auto-approve tfplan-prod
+        run: terraform apply -input=false -auto-approve
 
       - name: Get Outputs
         id: outputs
