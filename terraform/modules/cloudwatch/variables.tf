@@ -32,7 +32,7 @@ variable "firehose_role_arn" {
 variable "firehose_bucket_arn" {
     description = "The ARN of the S3 bucket for Kinesis Firehose"
     type        = string
-#    default     = "arn:aws:s3:::cicd-kinesis-firehose-bucket"
+    default     = "arn:aws:s3:::ec2-shutdown-lambda-bucket"
 }
 
 variable "buffering_size" {
