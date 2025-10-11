@@ -66,8 +66,9 @@ jobs:
         run: terraform show -json
       - name: Terraform Apply (dev)
         id: apply
-        run: terraform apply -input=false -auto-approve
-
+        run: |
+            terraform import aws_kinesis_firehose_delivery_stream.my_stream cicd-kinesis-firehose
+            terraform apply -input=false -auto-approve
       - name: Comment on PR
         uses: actions/github-script@v7
         with:
