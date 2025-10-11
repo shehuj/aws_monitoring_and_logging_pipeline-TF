@@ -67,9 +67,6 @@ jobs:
           name: prod-plan
           path: terraform/tfplan-prod
           retention-days: 0
-      - name: Terraform Destroy
-          id: destroy
-          run: terraform destroy -auto-approve
       - name: Terraform Apply (prod)
         id: apply-prod
         run: terraform apply -input=false -auto-approve tfplan-prod
