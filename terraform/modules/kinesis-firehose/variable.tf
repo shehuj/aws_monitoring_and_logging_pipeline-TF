@@ -7,7 +7,7 @@ variable "aws_kinesis_firehose_delivery_stream_name" {
 variable "stream_name" {
     description = "The name of the Kinesis Firehose delivery stream"
     type        = string
-#    default     = "aws-monit-logging-pipeline"
+    default     = "aws-monit-logging-pipeline"
 }
 
 variable "role_arn" {
@@ -19,7 +19,7 @@ variable "role_arn" {
 variable "bucket_arn" {
     description = "The ARN of the S3 bucket where Kinesis Firehose will deliver data"
     type        = string
-#    default     = "arn:aws:s3:::aws-monit-logging-pipeline"
+    default     = "arn:aws:s3:::ec2-shutdown-lambda-bucket"
 }
 
 variable "buffering_size" {
