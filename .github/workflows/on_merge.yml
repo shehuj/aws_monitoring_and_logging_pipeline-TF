@@ -43,6 +43,13 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
+
+      
+      - name: Terraform Destroy
+        id: destroy
+        run: |
+          terraform destroy -auto-approve \
+            -var="environment=${{ github.event.inputs.environment }}"
       - name: Terraform Init
         run: terraform init -input=false
 
@@ -55,8 +62,10 @@ jobs:
         with:
           name: prod-plan
           path: terraform/tfplan-prod
-          retention-days: 5
-
+          retention-days: 0
+      - name: Terraform Destroy
+          id: destroy
+          run: terraform destroy -auto-approve
       - name: Terraform Apply (prod)
         id: apply-prod
         run: terraform apply -input=false -auto-approve tfplan-prod
