@@ -19,7 +19,7 @@ variable "role_arn" {
 variable "bucket_arn" {
     description = "The ARN of the S3 bucket where Kinesis Firehose will deliver data"
     type        = string
-    default     = "arn:aws:s3:::ec2-shutdown-lambda-bucket"
+    default     = "arn:aws:s3:::monit-logging-pipeline-bucket"
 }
 
 variable "buffering_size" {
