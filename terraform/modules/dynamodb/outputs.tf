@@ -1,14 +1,14 @@
 output "table_name" {
-  description = "The name of the Kinesis Firehose delivery stream"
-  value       = aws_kinesis_firehose_delivery_stream.this.name
+  description = "The name of the DynamoDB table"
+  value       = aws_dynamodb_table.this.name
 }
 
 output "table_arn" {
-  description = "The ARN of the Kinesis Firehose delivery stream"
-  value       = aws_kinesis_firehose_delivery_stream.this.arn
+  description = "The ARN of the DynamoDB table"
+  value       = aws_dynamodb_table.this.arn
 }
 
 output "table_stream_arn" {
-  description = "The name of the Kinesis Firehose delivery stream"
-  value       = aws_kinesis_firehose_delivery_stream.this.name
+  description = "The ARN of the DynamoDB table stream"
+  value       = aws_dynamodb_table.this.stream_arn
 }

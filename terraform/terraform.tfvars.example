@@ -1,0 +1,58 @@
+# Copy this file to terraform.tfvars and update with your values
+
+# AWS Configuration
+aws_region     = "us-east-1"
+aws_account_id = "YOUR_AWS_ACCOUNT_ID"  # Replace with your 12-digit AWS account ID
+
+# Project Configuration
+project_name   = "monitoring-pipeline"
+environment    = "prod"  # Options: dev, staging, prod
+naming_prefix  = "aws-mon-log"  # Prefix for all resources (keep it short)
+
+# S3 Configuration
+# Leave empty to auto-generate unique name, or specify your own globally unique bucket name
+s3_bucket_name = ""  # Example: "my-company-monitoring-logs-prod"
+
+# CloudTrail Configuration
+cloudtrail_name               = ""  # Leave empty for auto-generation
+enable_cloudtrail_encryption  = true
+
+# CloudWatch Configuration
+cloudwatch_log_group_name = ""  # Leave empty for auto-generation
+cloudwatch_retention_days = 30  # Options: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, 3653
+
+# SNS Configuration
+sns_topic_name = ""  # Leave empty for auto-generation
+sns_email_subscriptions = [
+  # "alerts@example.com",
+  # "ops-team@example.com"
+]
+
+# SQS Configuration
+sqs_queue_name = ""  # Leave empty for auto-generation
+
+# DynamoDB Configuration
+dynamodb_table_name = ""  # Leave empty for auto-generation
+
+# Kinesis Firehose Configuration
+kinesis_firehose_name = ""  # Leave empty for auto-generation
+
+# Feature Flags (set to false to disable specific modules)
+enable_cloudtrail        = true
+enable_cloudwatch        = true
+enable_sns               = true
+enable_sqs               = true
+enable_kinesis_firehose  = true
+enable_dynamodb          = true
+
+# S3 Lifecycle
+enable_s3_lifecycle = true
+
+# Common Tags (applied to all resources)
+tags = {
+  Terraform   = "true"
+  Project     = "monitoring-pipeline"
+  ManagedBy   = "Terraform"
+  Owner       = "Platform-Team"
+  CostCenter  = "Engineering"
+}

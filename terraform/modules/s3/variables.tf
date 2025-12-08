@@ -1,5 +1,10 @@
 variable "bucket_name" {
   description = "Name for the logging bucket"
   type        = string
-  default = "ec2-shutdown-lambda-bucket"
+}
+
+variable "tags" {
+  description = "Tags to apply to S3 bucket"
+  type        = map(string)
+  default     = {}
 }

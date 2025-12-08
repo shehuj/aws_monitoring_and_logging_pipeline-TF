@@ -1,6 +1,6 @@
 ## AWS Monitoring & Logging Pipeline (Terraform)
 
-🚀 Overview
+🚀 Overview :
 
 This repository contains a Terraform-based solution to deploy a fully automated monitoring & logging pipeline in AWS using core services. The pipeline emphasizes observability, auditability, and integration with AWS’s native tooling.
 
