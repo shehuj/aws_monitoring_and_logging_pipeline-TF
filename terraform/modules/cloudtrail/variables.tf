@@ -1,57 +1,15 @@
 variable "trail_name" {
-  type = string
-  default = "cicd-cloudtrail"
+  description = "Name of the CloudTrail"
+  type        = string
 }
 
 variable "s3_bucket_name" {
-  type = string
+  description = "Name of the S3 bucket where CloudTrail logs will be stored"
+  type        = string
 }
 
-variable "s3_key_prefix" {
-  type    = string
-  default = "cloudtrail"
-}
-
-variable "include_global_service_events" {
-  type    = bool
-  default = true
-}
- variable "trail_arn" {
-  type = string
-  default = "arn:aws:cloudtrail:us-east-1:615299732970:trail/cicd-cloudtrail"
-}
-
-variable "trail_id" {
-  type = string
-  default = "cicd-cloudtrail"
-}
-
-variable "stream_name" {
-  type    = string
-  default = "cicd-kinesis-firehose"
-}
-
-variable "role_arn" {
-  type = string
-  default = "arn:aws:iam::615299732970:role/firehose_delivery_role"
-}
-
-variable "bucket_arn" {
-  type = string
-  default = "arn:aws:s3:::ec2-shutdown-lambda-bucket"
-}
-
-variable "buffering_size" {
-  type    = number
-  default = 5 # Size in MB to buffer before delivering data to the destination
-}
-
-variable "buffering_interval" {
-  type    = number
-  default = 300 # Time in seconds to buffer before delivering data to the destination
-}
-
-variable "compression_format" {
-  type    = string
-  default = "UNCOMPRESSED" # Compression format to use for the data delivered to the destination
+variable "tags" {
+  description = "Tags to apply to CloudTrail"
+  type        = map(string)
+  default     = {}
 }
